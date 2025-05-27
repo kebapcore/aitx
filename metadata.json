@@ -1,0 +1,6 @@
+{
+  "name": "AI Text Editor with Lexi Assistant",
+  "description": "A web-based text editor with Markdown preview, AI-powered text and image generation, and an interactive writing assistant named Lexi. Features include theme customization, file operations, and voice output for assistant responses.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}

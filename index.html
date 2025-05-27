@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Text Editor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class', // or 'media' or 'class'
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            typography: (theme) => ({
+              DEFAULT: { // Light mode prose
+                css: {
+                  '--tw-prose-body': 'var(--tw-prose-body, theme(\'colors.gray[700]\'))', // Use CSS var, fallback
+                  '--tw-prose-headings': 'var(--tw-prose-headings, theme(\'colors.gray[900]\'))',
+                  '--tw-prose-lead': 'var(--tw-prose-lead, theme(\'colors.gray[600]\'))',
+                  '--tw-prose-links': 'var(--tw-prose-links, theme(\'colors.sky[600]\'))',
+                  '--tw-prose-bold': 'var(--tw-prose-bold, theme(\'colors.gray[900]\'))',
+                  '--tw-prose-counters': 'var(--tw-prose-counters, theme(\'colors.gray[500]\'))',
+                  '--tw-prose-bullets': 'var(--tw-prose-bullets, theme(\'colors.gray[300]\'))',
+                  '--tw-prose-hr': 'var(--tw-prose-hr, theme(\'colors.gray[200]\'))',
+                  '--tw-prose-quotes': 'var(--tw-prose-quotes, theme(\'colors.gray[900]\'))',
+                  '--tw-prose-quote-borders': 'var(--tw-prose-quote-borders, theme(\'colors.gray[200]\'))',
+                  '--tw-prose-captions': 'var(--tw-prose-captions, theme(\'colors.gray[500]\'))',
+                  '--tw-prose-code': 'var(--tw-prose-code, theme(\'colors.pink[600]\'))',
+                  '--tw-prose-pre-code': 'var(--tw-prose-pre-code, theme(\'colors.gray[200]\'))',
+                  '--tw-prose-pre-bg': 'var(--tw-prose-pre-bg, theme(\'colors.gray[800]\'))',
+                  '--tw-prose-th-borders': 'var(--tw-prose-th-borders, theme(\'colors.gray[300]\'))',
+                  '--tw-prose-td-borders': 'var(--tw-prose-td-borders, theme(\'colors.gray[200]\'))',
+                  h1: { color: 'var(--tw-prose-headings)' },
+                  h2: { color: 'var(--tw-prose-headings)' },
+                  h3: { color: 'var(--tw-prose-headings)' },
+                  h4: { color: 'var(--tw-prose-headings)' },
+                  code: {
+                    backgroundColor: theme('colors.gray[100]'), // Keep specific for non-prose code if needed
+                    padding: '0.2em 0.4em',
+                    borderRadius: '0.25rem',
+                    fontWeight: '500',
+                    color: 'var(--tw-prose-code)', // Use prose code color
+                  },
+                  'pre code': {
+                    backgroundColor: 'transparent',
+                    padding: '0',
+                    borderRadius: '0',
+                  },
+                },
+              },
+              invert: { // Dark mode prose
+                css: {
+                  '--tw-prose-body': 'var(--tw-prose-body, theme(\'colors.gray[300]\'))',
+                  '--tw-prose-headings': 'var(--tw-prose-headings, theme(\'colors.gray[100]\'))',
+                  '--tw-prose-lead': 'var(--tw-prose-lead, theme(\'colors.gray[400]\'))',
+                  '--tw-prose-links': 'var(--tw-prose-links, theme(\'colors.sky[400]\'))',
+                  '--tw-prose-bold': 'var(--tw-prose-bold, theme(\'colors.gray[100]\'))',
+                  '--tw-prose-counters': 'var(--tw-prose-counters, theme(\'colors.gray[400]\'))',
+                  '--tw-prose-bullets': 'var(--tw-prose-bullets, theme(\'colors.gray[600]\'))',
+                  '--tw-prose-hr': 'var(--tw-prose-hr, theme(\'colors.gray[700]\'))',
+                  '--tw-prose-quotes': 'var(--tw-prose-quotes, theme(\'colors.gray[100]\'))',
+                  '--tw-prose-quote-borders': 'var(--tw-prose-quote-borders, theme(\'colors.gray[700]\'))',
+                  '--tw-prose-captions': 'var(--tw-prose-captions, theme(\'colors.gray[400]\'))',
+                  '--tw-prose-code': 'var(--tw-prose-code, theme(\'colors.pink[400]\'))',
+                  '--tw-prose-pre-code': 'var(--tw-prose-pre-code, theme(\'colors.gray[300]\'))',
+                  '--tw-prose-pre-bg': 'var(--tw-prose-pre-bg, theme(\'colors.gray[900]\'))', 
+                  '--tw-prose-th-borders': 'var(--tw-prose-th-borders, theme(\'colors.gray[700]\'))',
+                  '--tw-prose-td-borders': 'var(--tw-prose-td-borders, theme(\'colors.gray[800]\'))',
+                  h1: { color: 'var(--tw-prose-headings)' },
+                  h2: { color: 'var(--tw-prose-headings)' },
+                  h3: { color: 'var(--tw-prose-headings)' },
+                  h4: { color: 'var(--tw-prose-headings)' },
+                  code: {
+                    backgroundColor: theme('colors.gray[700]'), // Keep specific for non-prose code if needed
+                    padding: '0.2em 0.4em',
+                    borderRadius: '0.25rem',
+                    fontWeight: '500',
+                    color: 'var(--tw-prose-code)', // Use prose code color
+                  },
+                  'pre code': {
+                    backgroundColor: 'transparent',
+                    padding: '0',
+                    borderRadius: '0',
+                  },
+                },
+              },
+            }),
+          },
+        },
+        plugins: [],
+      }
+    </script>
+    <style id="dynamic-theme-styles">
+      /* CSS variables for themes will be injected here by JavaScript */
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.0.1",
+    "marked": "https://esm.sh/marked@^15.0.12",
+    "dompurify": "https://esm.sh/dompurify@^3.2.6",
+    "uuid": "https://esm.sh/uuid@^10.0.0"
+  }
+}
+</script>
+</head>
+  <body class="font-sans antialiased" style="background-color: var(--theme-bg-page);"> 
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
+<link rel="stylesheet" href="index.css">
+<script src="index.tsx" type="module"></script>
